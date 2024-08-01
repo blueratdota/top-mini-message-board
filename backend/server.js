@@ -2,6 +2,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import pool from "./config/db.js";
+import { request } from "express";
+import cors from "cors";
 import msgRouters from "./routes/msgRoutes.js";
 
 const app = express();
@@ -14,8 +16,8 @@ console.log(`### pathname is: ${__filename}`);
 // body parser middleware
 // must be before other
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 app.use("/", msgRouters);
 
 // testing db -- logs latest registy
