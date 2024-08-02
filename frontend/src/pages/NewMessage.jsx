@@ -21,6 +21,8 @@ const NewMessage = ({}) => {
       } catch (error) {
         console.log("display error.jsx");
       }
+    } else {
+      alert("A field is empty");
     }
   };
   return (

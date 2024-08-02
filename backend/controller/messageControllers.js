@@ -24,7 +24,7 @@ const postMessage = async (req, res, next) => {
   try {
     const { content, author } = req.body;
     const newMessage = await pool.query(
-      "INSERT INTO mssg_board (content,author,post_date) VALUES ($1,$2,$3) RETURNING *",
+      "INSERT INTO mssg_board (content,author,post_time) VALUES ($1,$2,$3) RETURNING *",
       [content, author, new Date()]
     );
     res.status(201).json(newMessage.rows[0]);

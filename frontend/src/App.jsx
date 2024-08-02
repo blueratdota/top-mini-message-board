@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import MessageEntry from "./component/MessageEntry";
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -27,11 +28,16 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-extGray">
-      <div className=" bg-extBlack text-extWhite max-w-[800px] mx-auto px-10 py-4">
+    <div className="bg-extGray ">
+      <div className=" bg-extBlack text-extWhite max-w-[800px] mx-auto px-10 py-4 min-h-screen">
         <header className="pt-4 pb-8 flex flex-col md:flex-row gap-4 text-center justify-between items-center uppercase border-b">
-          <Link to={"/"}>
-            <h1 className="text-3xl">Odin Message Board</h1>
+          <Link
+            to={"/"}
+            onClick={() => {
+              setBtn("add");
+            }}
+          >
+            <h1 className="text-4xl">Odin Message Board</h1>
           </Link>
           {btn === "add" ? (
             <Link
@@ -59,9 +65,17 @@ function App() {
         </header>
         <Outlet></Outlet>
         <div>
-          {messages.map((message) => {
-            return <div>{message.content}</div>;
-          })}
+          <h2 className="text-3xl my-8">All Messages</h2>
+          <div className="flex flex-col-reverse gap-4">
+            {messages.map((message) => {
+              return (
+                <MessageEntry
+                  key={message.id}
+                  messageData={message}
+                ></MessageEntry>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
