@@ -39,7 +39,7 @@ const MessageEntry = ({ messageData }) => {
       className="bg-extPurple rounded-lg p-4"
       onClick={handleOpen}
     >
-      <p className="text-2xl">{messageData.content}</p>
+      <p className="text-2xl truncate">{messageData.content}</p>
       <div className="mt-4 sm:flex justify-between">
         <p>
           Posted by: <span className="font-bold">{messageData.author}</span>
