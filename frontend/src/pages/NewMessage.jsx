@@ -3,13 +3,15 @@ import { useState } from "react";
 const NewMessage = ({}) => {
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
+  const [isPostDisabled, setIsPostDisabled] = useState(false);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
+    setIsPostDisabled(true);
     if (content && author) {
       try {
         const body = { author, content };
-        const response = await fetch("http://localhost:3000/new", {
+        const response = await fetch(import.meta.env.VITE_SERVER_NEW, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
@@ -35,7 +37,7 @@ const NewMessage = ({}) => {
         <input
           type="text"
           placeholder="Put name here"
-          className="py-1 px-2 rounded max-w-[400px]"
+          className="py-1 px-2 rounded"
           value={author}
           onChange={(e) => {
             setAuthor(e.target.value);
@@ -52,8 +54,12 @@ const NewMessage = ({}) => {
             setContent(e.target.value);
           }}
         ></textarea>
-        <button className="bg-extGreen px-8 py-3 rounded-lg" type="submit">
-          Post Message
+        <button
+          className="bg-extGreen px-8 py-3 rounded-lg"
+          type="submit"
+          disabled={isPostDisabled}
+        >
+          {isPostDisabled ? "Loading" : "Post Message"}
         </button>
       </form>
     </div>

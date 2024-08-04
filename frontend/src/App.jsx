@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     let ignore = false;
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000");
+      const response = await fetch(import.meta.env.VITE_SERVER);
       const dbData = await response.json();
       if (!ignore) {
         setMessages(dbData);

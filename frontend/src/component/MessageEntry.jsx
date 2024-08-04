@@ -49,7 +49,7 @@ const MessageEntry = ({ messageData }) => {
       <dialog
         ref={dialogRef}
         onClick={handleClickOutside}
-        className="w-[40vw] pb-2 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] outline-none bg-extGray "
+        className="w-[90vw] md:w-[40vw] pb-2 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] outline-none bg-extGray "
       >
         <p className=" text-extWhite h-full p-10">{messageData.content}</p>
       </dialog>
